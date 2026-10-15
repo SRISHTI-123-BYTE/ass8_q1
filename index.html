@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Placement Portal</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      color: #243047;
+    }
+    header {
+      background: #34256f;
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    nav {
+      background: #51409b;
+      padding: 14px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 12px;
+      text-decoration: none;
+    }
+    main { padding: 25px; }
+    h2 { color: #34256f; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px #00000012;
+    }
+    .stat {
+      font-size: 28px;
+      color: #7655cf;
+      font-weight: bold;
+    }
+    li { margin: 10px 0; }
+    footer {
+      background: #34256f;
+      color: white;
+      text-align: center;
+      padding: 16px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Student Placement Portal</h1>
+    <p>Your gateway to career opportunities</p>
+  </header>
+
+  <nav>
+    <a href="#profiles">Students</a>
+    <a href="#statistics">Statistics</a>
+    <a href="#companies">Companies</a>
+    <a href="#drives">Recruitment Drives</a>
+  </nav>
+
+  <main>
+    <section id="profiles">
+      <h2>Student Profiles</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Aarav Sharma</h3>
+          <p>Software Engineering</p>
+          <p>CGPA: 9.1</p>
+          <p>Skills: Python, Java, SQL</p>
+        </div>
+        <div class="card">
+          <h3>Priya Verma</h3>
+          <p>Computer Science</p>
+          <p>CGPA: 8.8</p>
+          <p>Skills: Java, Web Development</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="statistics">
+      <h2>Placement Statistics</h2>
+      <div class="cards">
+        <div class="card">
+          <p class="stat">850+</p>
+          <p>Students Placed</p>
+        </div>
+        <div class="card">
+          <p class="stat">120+</p>
+          <p>Recruiting Companies</p>
+        </div>
+        <div class="card">
+          <p class="stat">18 LPA</p>
+          <p>Highest Package (sample)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="companies">
+      <h2>Company Information</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>TechNova</h3>
+          <p>Role: Software Developer</p>
+          <p>Eligibility: CGPA 7.0 or above</p>
+        </div>
+        <div class="card">
+          <h3>CloudSphere</h3>
+          <p>Role: Cloud Engineer</p>
+          <p>Eligibility: CGPA 7.5 or above</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="drives">
+      <h2>Upcoming Recruitment Drives</h2>
+      <div class="card">
+        <ul>
+          <li>TechNova - 25 October 2026</li>
+          <li>CloudSphere - 30 October 2026</li>
+          <li>DataWorks - 5 November 2026</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>University Placement Cell | Student Placement Portal</p>
+  </footer>
+</body>
+</html>
