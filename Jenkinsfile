@@ -6,8 +6,6 @@ pipeline {
         IMAGE = 'hsri123/student-placement-portal'
         DEPLOYMENT = 'placement-deployment'
         CONTAINER = 'placement-container'
-
-        // Docker Desktop CLI directory containing docker.exe and kubectl.exe
         DOCKER_BIN = 'C:\\Users\\srish\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin'
     }
 
@@ -34,6 +32,8 @@ pipeline {
 
                         echo Checking kubectl...
                         where.exe kubectl
+                        if errorlevel 1 exit /b 1
+
                         kubectl version --client
                         if errorlevel 1 exit /b 1
                     '''
@@ -109,22 +109,26 @@ pipeline {
                     ]) {
                         bat '''
                             @echo off
+                            echo Checking kubectl path...
+                            where.exe kubectl
+                            if errorlevel 1 exit /b 1
 
-                            echo Checking Kubernetes connectivity...
+                            echo Checking Kubernetes connection...
                             kubectl config current-context
                             if errorlevel 1 exit /b 1
 
                             kubectl get nodes
                             if errorlevel 1 exit /b 1
 
-                            echo Applying Kubernetes manifests...
+                            echo Applying Deployment...
                             kubectl apply -f deployment.yaml
                             if errorlevel 1 exit /b 1
 
+                            echo Applying Service...
                             kubectl apply -f service.yaml
                             if errorlevel 1 exit /b 1
 
-                            echo Updating application image...
+                            echo Updating image...
                             kubectl set image deployment/%DEPLOYMENT% %CONTAINER%=%IMAGE%:%BUILD_NUMBER%
                             if errorlevel 1 exit /b 1
 
@@ -154,8 +158,7 @@ pipeline {
                     ]) {
                         bat '''
                             @echo off
-
-                            echo ===== Deployments =====
+                            echo ===== Kubernetes Deployments =====
                             kubectl get deployments
                             if errorlevel 1 exit /b 1
 
@@ -171,7 +174,7 @@ pipeline {
                             kubectl rollout history deployment/%DEPLOYMENT%
                             if errorlevel 1 exit /b 1
 
-                            echo ===== Deployment Verified =====
+                            echo Deployment verification completed.
                         '''
                     }
                 }
@@ -181,7 +184,7 @@ pipeline {
 
     post {
         success {
-            echo 'SUCCESS: Student Placement Portal deployed successfully!'
+            echo 'SUCCESS: Student Placement Portal deployed!'
             echo 'Application URL: http://localhost:30080'
         }
 
